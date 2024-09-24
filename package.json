@@ -1,0 +1,16 @@
+{
+  "name": "curso-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "app": "npx ts-node -T index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
