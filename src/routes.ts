@@ -4,8 +4,11 @@ import {
     FastifyRequest,
     FastifyReply,
 } from 'fastify';
+import { CreateCustomerService } from './services/CreateCustomerService';
 import { CreateCustomerController } from './controllers/CreateCustomerController';
+import { ListCustomersService } from './services/ListCustomersService';
 import { ListCustomersController } from './controllers/ListCustomersController';
+import { DeleteCustomerService } from './services/DeleteCustomerService';
 import { DeleteCustomerController } from './controllers/DeleteCustomerController';
 
 export async function routes(
@@ -22,21 +25,33 @@ export async function routes(
     fastify.post(
         '/customer',
         async (request: FastifyRequest, reply: FastifyReply) => {
-            return new CreateCustomerController().handle(request, reply);
+            const customerService = new CreateCustomerService();
+            return new CreateCustomerController(customerService).handle(
+                request,
+                reply,
+            );
         },
     );
 
     fastify.get(
         '/customers',
         async (request: FastifyRequest, reply: FastifyReply) => {
-            return new ListCustomersController().handle(request, reply);
+            const listService = new ListCustomersService();
+            return new ListCustomersController(listService).handle(
+                request,
+                reply,
+            );
         },
     );
 
     fastify.delete(
         '/customer',
         async (request: FastifyRequest, reply: FastifyReply) => {
-            return new DeleteCustomerController().handle(request, reply);
+            const deleteService = new DeleteCustomerService();
+            return new DeleteCustomerController(deleteService).handle(
+                request,
+                reply,
+            );
         },
     );
 }
