@@ -9,8 +9,16 @@ class CreateCustomerController {
     }
 
     async handle(request: FastifyRequest, reply: FastifyReply) {
-        const { name, email } = request.body as { name: string; email: string };
-        const customer = await this.customerService.execute({ name, email });
+        const { name, email, password } = request.body as {
+            name: string;
+            email: string;
+            password: string;
+        };
+        const customer = await this.customerService.execute({
+            name,
+            email,
+            password,
+        });
         reply.send(customer);
     }
 }
